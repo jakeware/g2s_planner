@@ -1,0 +1,27 @@
+<launch>
+  <arg name="namespace" default="g2s_planner" />
+  <arg name="manager" default="g2s_planner_manager" />
+  <arg name="standalone" default="true" />
+  <arg name="load_params" default="true" />
+  <arg name="param_file" default="g2s_planner.yaml" />
+
+  <group ns="$(arg namespace)" >
+    <!-- manager -->
+    <node if="$(arg standalone)"
+          pkg="nodelet" type="nodelet" name="$(arg manager)"
+          args="manager" output="screen" >
+      <!-- params -->
+      <rosparam command="load" if="$(arg load_params)" file="$(find g2s_planner)/cfg/$(arg param_file)"/>
+
+      <!-- remaps -->
+      <remap from="cloud_topic" to="/flight/xtion_depth/points" />
+      <remap from="~pixel_map_topic" to="~pixel_map" />
+      <remap from="~voxel_map_topic" to="~voxel_map" />
+    </node>
+
+    <!-- nodelet -->
+    <node pkg="nodelet" type="nodelet" name="g2s_planner"
+          args="load g2s_planner/GlobalMapperNodelet $(arg manager)" output="screen">
+    </node>
+  </group>
+</launch>

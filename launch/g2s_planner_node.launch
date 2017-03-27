@@ -1,0 +1,10 @@
+<launch>
+  <arg name="param_file" default="g2s_planner.yaml" />
+  <arg name="load_params" default="true" />
+
+  <!-- node -->
+  <node pkg="g2s_planner" type="g2s_planner_node" name="g2s_planner" output="screen">
+    <!-- params -->
+    <rosparam command="load" if="$(arg load_params)" file="$(find g2s_planner)/cfg/$(arg param_file)"/>
+  </node>
+</launch>
