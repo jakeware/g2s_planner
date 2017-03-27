@@ -1,0 +1,8 @@
+<library path="lib/libg2s_planner_nodelet">
+  <class name="g2s_planner/GlobalMapperNodelet"
+         type="g2s_planner::GlobalMapperNodelet" base_class_type="nodelet::Nodelet">
+    <description>
+	    Global guidance system for path planning in 2D and 3D maps.
+    </description>
+  </class>
+</library>
