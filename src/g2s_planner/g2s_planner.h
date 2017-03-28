@@ -11,8 +11,6 @@
 
 namespace g2s_planner {
 
-typedef pcl::PointCloud<pcl::PointXYZ> PointCloud;
-
 class G2SPlanner {
  public:
   G2SPlanner(volatile std::sig_atomic_t* stop_signal_ptr_, G2SPlannerParams& params);
